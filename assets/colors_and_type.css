@@ -1,0 +1,144 @@
+/* =========================================================================
+   BEET PASTA ANNIVERSARY — Colors & Type
+   A romantic, easygoing palette pulled straight from a bowl of beet rigatoni:
+   deep beet magenta, rosy pinks, cream, parsley green, white feta.
+   ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@400;600&display=swap');
+
+:root {
+  /* ---------- CORE BRAND COLORS ---------- */
+  --beet-900:   #5A0E2D;   /* darkest — roasted beet skin, used for body text on cream */
+  --beet-800:   #821A42;   /* deep beet — strong accents */
+  --beet-700:   #A82158;   /* signature beet magenta — primary brand color */
+  --beet-600:   #C42A6B;   /* the saturated pasta-sauce magenta */
+  --beet-500:   #E2477F;   /* cherry-rose — buttons, links */
+  --beet-400:   #F07AA1;   /* dusty rose */
+  --beet-300:   #F7AFC6;   /* petal pink */
+  --beet-200:   #FBD0DD;   /* blush — soft backgrounds */
+  --beet-100:   #FDE7EE;   /* whisper pink — page tints */
+
+  /* ---------- NEUTRALS ---------- */
+  --cream:      #FBF6EE;   /* primary off-white background — warm cream */
+  --cream-deep: #F4ECDE;   /* card backgrounds, dividers */
+  --white:      #FFFFFF;   /* pure white — bowls, cards */
+  --feta:       #F8F1E4;   /* warm white — like crumbled feta */
+  --ink:        #2E1721;   /* warm near-black, has a touch of plum */
+  --ink-soft:   #5C3A48;   /* muted body */
+  --ink-faint:  #8E6F7A;   /* captions / metadata */
+
+  /* ---------- ACCENTS ---------- */
+  --herb:       #6E8C4A;   /* parsley flecks — secondary accent */
+  --herb-light: #B6CA8E;   /* fresh herb tint */
+  --olive-oil:  #E8B547;   /* warm golden — used sparingly for sparkle */
+  --black-pepper: #2A1F1B; /* deep neutral with brown undertone */
+
+  /* ---------- SEMANTIC ---------- */
+  --bg:         var(--cream);
+  --bg-card:    var(--white);
+  --bg-tint:    var(--beet-100);
+  --fg:         var(--ink);
+  --fg-soft:    var(--ink-soft);
+  --fg-faint:   var(--ink-faint);
+  --fg-on-beet: var(--cream);
+  --accent:     var(--beet-600);
+  --accent-strong: var(--beet-700);
+  --link:       var(--beet-600);
+
+  --border:     rgba(168, 33, 88, 0.18);  /* soft beet-tinted border */
+  --border-strong: rgba(168, 33, 88, 0.35);
+  --divider:    rgba(46, 23, 33, 0.08);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  --font-display: 'Chewy', 'Marker Felt', cursive;
+  --font-body:    'Quicksand', ui-rounded, system-ui, sans-serif;
+  --font-hand:    'Caveat', 'Bradley Hand', cursive;
+
+  /* ---------- TYPE SCALE ---------- */
+  --fs-hero:   clamp(56px, 9vw, 112px);
+  --fs-h1:     clamp(40px, 6vw, 72px);
+  --fs-h2:     clamp(28px, 4vw, 44px);
+  --fs-h3:     22px;
+  --fs-body:   17px;
+  --fs-small:  14px;
+  --fs-micro:  12px;
+
+  --lh-display: 1.05;
+  --lh-heading: 1.15;
+  --lh-body:    1.55;
+
+  /* ---------- SPACING ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ---------- RADII (generous, rounded — like pasta tubes) ---------- */
+  --r-sm:   8px;
+  --r-md:   14px;
+  --r-lg:   22px;
+  --r-xl:   32px;
+  --r-2xl:  48px;
+  --r-pill: 999px;
+
+  /* ---------- SHADOWS (soft, warm, like steam) ---------- */
+  --shadow-sm:  0 1px 2px rgba(90, 14, 45, 0.06), 0 2px 6px rgba(90, 14, 45, 0.05);
+  --shadow-md:  0 4px 14px rgba(90, 14, 45, 0.10), 0 2px 4px rgba(90, 14, 45, 0.06);
+  --shadow-lg:  0 18px 40px rgba(90, 14, 45, 0.16), 0 4px 10px rgba(90, 14, 45, 0.08);
+  --shadow-inset: inset 0 2px 4px rgba(90, 14, 45, 0.08);
+
+  /* ---------- MOTION ---------- */
+  --ease-soft:    cubic-bezier(0.22, 1, 0.36, 1);   /* easeOutQuart-ish — used most */
+  --ease-bounce:  cubic-bezier(0.34, 1.56, 0.64, 1);/* gentle bounce on press release */
+  --dur-quick:    140ms;
+  --dur-base:     260ms;
+  --dur-slow:     480ms;
+}
+
+/* =========================================================================
+   SEMANTIC ELEMENT STYLES
+   ========================================================================= */
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+  font-family: var(--font-display);
+  color: var(--accent-strong);
+  line-height: var(--lh-heading);
+  font-weight: 400; /* Chewy is single-weight */
+  letter-spacing: -0.005em;
+}
+h1, .h1 { font-size: var(--fs-h1); line-height: var(--lh-display); }
+h2, .h2 { font-size: var(--fs-h2); }
+h3, .h3 { font-size: var(--fs-h3); }
+
+.hero { font-family: var(--font-display); font-size: var(--fs-hero); line-height: var(--lh-display); color: var(--accent-strong); }
+.hand { font-family: var(--font-hand); font-weight: 600; color: var(--beet-700); }
+
+p { margin: 0 0 1em; color: var(--fg-soft); }
+strong, b { color: var(--fg); font-weight: 700; }
+em, i  { font-style: italic; }
+a { color: var(--link); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; text-decoration-color: var(--beet-300); }
+a:hover { text-decoration-color: var(--beet-600); }
+
+small, .caption { font-size: var(--fs-small); color: var(--fg-faint); }
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--fs-micro);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--beet-600);
+}

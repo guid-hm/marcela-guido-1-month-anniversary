@@ -1,0 +1,1090 @@
+<!DOCTYPE html><html lang="en"><head>
+
+
+
+
+
+
+<meta charset="utf-8">
+<title>Marcela &amp; Guido — One Month</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="assets/beet-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/colors_and_type.css">
+<style>
+  :root {
+    /* slide type scale (1920x1080) */
+    --type-hero:     200px;
+    --type-title:    96px;
+    --type-subtitle: 56px;
+    --type-section:  42px;
+    --type-body:     30px;
+    --type-small:    24px;
+
+    --pad-x: 110px;
+    --pad-y: 90px;
+    --gap-title: 56px;
+    --gap-item: 28px;
+  }
+
+  html, body { margin: 0; background: #000; overflow: hidden; }
+  *, *::before, *::after { box-sizing: border-box; }
+
+  deck-stage { background: var(--cream); }
+
+  /* ---------- shared slide skeleton ---------- */
+  section {
+    background: var(--cream);
+    color: var(--ink);
+    font-family: var(--font-body);
+    overflow: hidden;
+  }
+
+  .eyebrow {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--beet-600);
+  }
+
+  .hand {
+    font-family: var(--font-hand);
+    color: var(--beet-700);
+    font-weight: 600;
+  }
+
+  .display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    color: var(--beet-700);
+  }
+
+  /* ---------- COVER ---------- */
+  .cover {
+    position: relative;
+    width: 100%; height: 100%;
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+  }
+
+  .cover-left {
+    position: relative;
+    background: var(--cream);
+    padding: var(--pad-y) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 2;
+  }
+
+  .cover-top {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .cover-top .mark { width: 64px; height: 64px; }
+  .cover-top .brand-eyebrow {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 36px;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-title-block { margin-top: 30px; }
+  .cover-sub-hand {
+    font-family: var(--font-hand);
+    color: var(--beet-500);
+    font-size: 56px;
+    line-height: 0.9;
+    transform: rotate(-3deg);
+    transform-origin: left;
+    display: inline-block;
+    margin-bottom: 8px;
+    white-space: nowrap;
+  }
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: 96px;
+    line-height: 0.95;
+    color: var(--beet-700);
+    margin: 14px 0 0;
+    text-wrap: balance;
+    white-space: nowrap;
+  }
+  .cover-title .amp {
+    color: var(--beet-500);
+    font-size: 0.86em;
+    padding: 0 4px;
+  }
+  .cover-occasion {
+    margin-top: 26px;
+    font-family: var(--font-hand);
+    color: var(--ink-soft);
+    font-size: 46px;
+    line-height: 1;
+  }
+  .cover-occasion em {
+    color: var(--beet-700);
+    font-style: normal;
+  }
+
+  .cover-meta {
+    display: flex;
+    align-items: flex-end;
+    gap: 56px;
+  }
+  .cover-meta-block .label {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--beet-600);
+    margin-bottom: 12px;
+  }
+  .cover-meta-block .value {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 48px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .cover-meta-block .value small {
+    display: block;
+    font-family: var(--font-hand);
+    color: var(--ink-soft);
+    font-size: 26px;
+    font-weight: 600;
+    margin-top: 8px;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  .cover-divider {
+    width: 1.5px;
+    align-self: stretch;
+    background: var(--border-strong);
+    margin: 6px 0;
+  }
+  .cover-sign {
+    font-family: var(--font-hand);
+    color: var(--herb);
+    font-size: 36px;
+    font-weight: 600;
+  }
+
+  /* photo side */
+  .cover-right {
+    position: relative;
+    overflow: hidden;
+  }
+  .cover-photo {
+    position: absolute;
+    inset: 0;
+    background: url('assets/beetpasta.png') center/cover no-repeat;
+    transform: scale(1.05);
+  }
+  .cover-photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(115deg, rgba(168,33,88,0.10) 0%, rgba(168,33,88,0) 35%, rgba(90,14,45,0.35) 100%);
+  }
+
+  /* curved seam between left and photo */
+  .cover-seam {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: calc(52.5% - 1px);
+    width: 120px;
+    background: var(--cream);
+    border-top-right-radius: 60px;
+    border-bottom-right-radius: 60px;
+    transform: translateX(-100%);
+    z-index: 1;
+  }
+  .cover-seam::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 0 60px 60px 0;
+    box-shadow: 30px 0 60px rgba(90, 14, 45, 0.10);
+  }
+
+  /* sparkle decorations */
+  .sparkle {
+    position: absolute;
+    color: var(--beet-400);
+    font-family: var(--font-display);
+    font-size: 28px;
+    z-index: 3;
+    pointer-events: none;
+  }
+  .sparkle.gold { color: var(--olive-oil); }
+  .sparkle.herb { color: var(--herb); }
+
+  /* hand-drawn tag pinned over photo */
+  .cover-tag {
+    position: absolute;
+    top: 80px;
+    right: 80px;
+    z-index: 4;
+    background: var(--cream);
+    color: var(--beet-700);
+    font-family: var(--font-display);
+    font-size: 26px;
+    padding: 14px 26px 16px;
+    border-radius: 999px;
+    box-shadow: var(--shadow-md);
+    transform: rotate(6deg);
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+  .cover-tag .dot {
+    display: inline-block;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--beet-600);
+    vertical-align: middle;
+    margin: 0 12px 4px;
+  }
+
+  .cover-stamp {
+    position: absolute;
+    bottom: 80px;
+    right: 80px;
+    z-index: 4;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    border: 2.5px dashed var(--cream);
+    color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    transform: rotate(-8deg);
+    background: rgba(168, 33, 88, 0.55);
+    backdrop-filter: blur(2px);
+  }
+  .cover-stamp .num {
+    font-family: var(--font-display);
+    font-size: 104px;
+    line-height: 0.9;
+    color: var(--cream);
+  }
+  .cover-stamp .lbl {
+    font-family: var(--font-body);
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    font-size: 14px;
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+  .cover-stamp-inner {
+    display: flex; flex-direction: column; align-items: center;
+  }
+
+  /* ---------- ITINERARY ---------- */
+  .itin {
+    position: relative;
+    width: 100%; height: 100%;
+    padding: var(--pad-y) var(--pad-x);
+    display: flex;
+    flex-direction: column;
+    background:
+      radial-gradient(1200px 600px at 90% -10%, var(--beet-100) 0%, transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, var(--beet-100) 0%, transparent 55%),
+      var(--cream);
+  }
+
+  .slide-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .slide-head-left { flex: 1; min-width: 0; }
+  .slide-head-left .eyebrow { margin-bottom: 14px; }
+  .slide-head .title {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 88px;
+    line-height: 0.95;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .slide-head-right {
+    font-family: var(--font-hand);
+    color: var(--ink-soft);
+    font-size: 28px;
+    text-align: right;
+    line-height: 1.2;
+    max-width: 360px;
+    flex-shrink: 0;
+  }
+  .slide-head-right b {
+    color: var(--beet-700);
+    font-weight: 600;
+  }
+
+  .itin-grid {
+    margin-top: 60px;
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 32px;
+    align-content: stretch;
+  }
+
+  .itin-card {
+    background: var(--white);
+    border-radius: 36px;
+    padding: 44px 38px 38px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-width: 0;
+  }
+  .itin-card.dark {
+    background: var(--beet-700);
+    color: var(--cream);
+  }
+
+  .itin-num {
+    position: absolute;
+    top: 22px;
+    right: 32px;
+    font-family: var(--font-display);
+    font-size: 110px;
+    line-height: 0.85;
+    color: var(--beet-200);
+    user-select: none;
+  }
+  .itin-card.dark .itin-num { color: rgba(253, 231, 238, 0.18); }
+
+  .itin-time {
+    font-family: var(--font-display);
+    font-size: 68px;
+    line-height: 1;
+    color: var(--beet-700);
+    margin-top: 14px;
+  }
+  .itin-card.dark .itin-time { color: var(--cream); }
+  .itin-time .ampm {
+    font-size: 28px;
+    color: var(--beet-500);
+    margin-left: 6px;
+  }
+  .itin-card.dark .itin-time .ampm { color: var(--beet-200); }
+
+  .itin-stage {
+    margin-top: 10px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+  }
+  .itin-card.dark .itin-stage { color: var(--cream); }
+
+  .itin-desc {
+    margin-top: 18px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .itin-card.dark .itin-desc { color: var(--beet-200); }
+
+  .itin-icon {
+    margin-top: auto;
+    padding-top: 28px;
+    font-family: var(--font-hand);
+    font-size: 28px;
+    color: var(--beet-500);
+  }
+  .itin-card.dark .itin-icon { color: var(--beet-300); }
+
+  .itin-foot {
+    margin-top: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .itin-foot-line {
+    display: flex; align-items: center; gap: 18px;
+    font-family: var(--font-hand);
+    color: var(--ink-soft);
+    font-size: 26px;
+    white-space: nowrap;
+  }
+  .itin-foot-sign {
+    white-space: nowrap;
+  }
+  .itin-foot-line .dot {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--beet-600);
+    flex-shrink: 0;
+  }
+  .itin-foot-sign {
+    font-family: var(--font-hand);
+    color: var(--beet-700);
+    font-size: 38px;
+    font-weight: 600;
+  }
+
+  /* ---------- RECIPE ---------- */
+  .recipe {
+    width: 100%; height: 100%;
+    padding: var(--pad-y) var(--pad-x);
+    display: grid;
+    grid-template-rows: auto 1fr;
+    background: var(--cream);
+    position: relative;
+  }
+  .recipe::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(800px 400px at 100% 0%, var(--beet-100) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .recipe-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 40px;
+    position: relative;
+  }
+  .recipe-head-left { min-width: 0; flex: 1; }
+  .recipe-head .title {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 78px;
+    line-height: 0.95;
+    margin: 0;
+    white-space: nowrap;
+  }
+  .recipe-head .lede {
+    font-family: var(--font-hand);
+    color: var(--ink-soft);
+    font-size: 26px;
+    max-width: 380px;
+    text-align: right;
+    line-height: 1.2;
+    flex-shrink: 0;
+  }
+  .recipe-head .lede em {
+    font-style: normal;
+    color: var(--beet-700);
+  }
+
+  .recipe-body {
+    margin-top: 44px;
+    display: grid;
+    grid-template-columns: 0.78fr 1.22fr;
+    gap: 44px;
+    position: relative;
+    min-height: 0;
+  }
+
+  /* ingredients card */
+  .ingredients {
+    background: var(--white);
+    border-radius: 36px;
+    padding: 44px 44px 36px;
+    box-shadow: var(--shadow-md);
+    display: flex;
+    flex-direction: column;
+  }
+  .ing-title {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 56px;
+    line-height: 1;
+    margin: 0 0 6px;
+  }
+  .ing-sub {
+    font-family: var(--font-hand);
+    color: var(--ink-faint);
+    font-size: 26px;
+    margin-bottom: 22px;
+  }
+  .ing-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .ing-list li {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    gap: 14px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1.5px dotted rgba(168, 33, 88, 0.22);
+    font-family: var(--font-body);
+    font-size: 20px;
+    line-height: 1.2;
+  }
+  .ing-list li:last-child { border-bottom: none; }
+  .ing-list .name {
+    color: var(--ink);
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ing-list .amt {
+    color: var(--beet-700);
+    font-weight: 500;
+    text-align: right;
+    font-family: var(--font-hand);
+    font-size: 24px;
+    white-space: nowrap;
+  }
+  .ing-foot {
+    margin-top: 18px;
+    font-family: var(--font-hand);
+    color: var(--herb);
+    font-size: 26px;
+    line-height: 1.15;
+  }
+
+  /* instructions */
+  .instructions {
+    display: flex;
+    flex-direction: column;
+  }
+  .ins-title {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 56px;
+    line-height: 1;
+    margin: 0 0 6px;
+  }
+  .ins-sub {
+    font-family: var(--font-hand);
+    color: var(--ink-faint);
+    font-size: 26px;
+    margin-bottom: 24px;
+  }
+  .ins-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 22px;
+  }
+  .ins-list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 14px;
+    align-items: start;
+    background: var(--white);
+    border-radius: 22px;
+    padding: 18px 22px 20px;
+    box-shadow: var(--shadow-sm);
+    min-width: 0;
+  }
+  .ins-list .step-num {
+    font-family: var(--font-display);
+    color: var(--beet-700);
+    font-size: 40px;
+    line-height: 0.9;
+    width: 48px;
+    text-align: center;
+  }
+  .ins-list .step-text {
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .ins-list .step-text b { color: var(--ink); }
+
+  .recipe-stamp {
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+    width: 110px;
+    transform: rotate(-12deg);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  /* tiny page numbering footer */
+  .page-foot {
+    position: absolute;
+    left: var(--pad-x);
+    bottom: 36px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--beet-600);
+    z-index: 5;
+    white-space: nowrap;
+  }
+  .page-foot .heart {
+    width: 12px; height: 12px;
+    background: var(--beet-600);
+    border-radius: 50%;
+  }
+
+  /* ---------- NAV ARROWS ---------- */
+  .deck-nav {
+    position: fixed;
+    bottom: 34px;
+    right: 48px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    z-index: 9999999;
+  }
+  .deck-nav-btn {
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(168, 33, 88, 0.88);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 22px rgba(168, 33, 88, 0.45);
+    transition: background 0.18s, transform 0.12s, opacity 0.25s;
+    backdrop-filter: blur(4px);
+  }
+  .deck-nav-btn:hover { background: rgba(147, 28, 74, 1); transform: scale(1.1); }
+  .deck-nav-btn:active { transform: scale(0.93); }
+  .deck-nav-btn svg { width: 22px; height: 22px; display: block; }
+
+  /* ---------- RSVP SLIDE ---------- */
+  .rsvp {
+    width: 100%; height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: var(--cream);
+    gap: 60px;
+    position: relative;
+  }
+  .rsvp::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(900px 600px at 50% 40%, var(--beet-100) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .rsvp-btn {
+    font-family: var(--font-display);
+    font-size: 72px;
+    line-height: 1;
+    color: var(--cream);
+    background: var(--beet-700);
+    border: none;
+    border-radius: 48px;
+    padding: 46px 96px;
+    cursor: pointer;
+    box-shadow: 0 10px 52px rgba(168, 33, 88, 0.45);
+    transition: transform 0.15s cubic-bezier(.2,.8,.2,1), box-shadow 0.15s;
+    letter-spacing: -0.01em;
+    position: relative;
+    z-index: 1;
+  }
+  .rsvp-btn:hover { transform: scale(1.04); box-shadow: 0 16px 72px rgba(168, 33, 88, 0.55); }
+  .rsvp-btn:active { transform: scale(0.97); }
+  .rsvp-msg {
+    font-family: var(--font-hand);
+    font-size: 38px;
+    color: var(--beet-700);
+    max-width: 880px;
+    text-align: center;
+    line-height: 1.5;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+    position: relative;
+    z-index: 1;
+    margin: 0;
+  }
+  .rsvp-msg.show { opacity: 1; transform: translateY(0); }
+
+  /* keep static print/screen */
+  @media print {
+    html, body, deck-stage { background: #fff; }
+    .deck-nav { display: none; }
+  }
+</style>
+</head>
+<body style="">
+
+<deck-stage width="1920" height="1080" style="--deck-rail-w: 188px;">
+
+  <!-- ============================ -->
+  <!-- 01 — COVER                    -->
+  <!-- ============================ -->
+  <section data-label="01 Cover">
+    <div class="cover" data-dashlane-rid="bd55965abd87f003">
+
+      <!-- LEFT: typography card -->
+      <div class="cover-left">
+
+        <div class="cover-top">
+          <img class="mark" src="assets/beet-mark.svg" alt="beet heart mark">
+          <span class="brand-eyebrow" style="">celebrating...</span>
+        </div>
+
+        <div class="cover-title-block">
+          <span class="cover-sub-hand">you &amp; me —</span>
+          <h1 class="cover-title">
+            <span>Marcela</span>
+            <span class="amp">&amp;</span>
+            <span>Guido's</span>
+          </h1>
+          <div class="cover-occasion">
+            <em>first month</em> anniversary
+          </div>
+        </div>
+
+        <div class="cover-meta">
+          <div class="cover-meta-block">
+            <div class="label">When</div>
+            <div class="value">
+              May 21
+              <small>thursday · 2026</small>
+            </div>
+          </div>
+          <div class="cover-divider"></div>
+          <div class="cover-meta-block">
+            <div class="label">What</div>
+            <div class="value">
+              beet pasta
+              <small style="">cooked together (through facetime)</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: hero photo -->
+      <div class="cover-right">
+        <div class="cover-photo"></div>
+      </div>
+
+      <!-- curved seam -->
+      <div class="cover-seam"></div>
+
+      <!-- decorative sparkles & tag -->
+      <span class="sparkle" style="top: 70px; left: 48%;">✦</span>
+      <span class="sparkle gold" style="top: 200px; left: 44%; font-size: 22px;">✦</span>
+      <span class="sparkle herb" style="top: 470px; left: 41%; font-size: 18px;">✦</span>
+      <span class="sparkle" style="bottom: 220px; left: 45%; font-size: 20px;">✦</span>
+      <span class="sparkle gold" style="bottom: 110px; left: 48%; font-size: 24px;">✦</span>
+
+      <div class="cover-tag" style="" data-dashlane-rid="c0595b1b64a8350e">
+        pink pasta!<span class="dot"></span>:0
+      </div>
+
+      <div class="cover-stamp" style="border-radius: 50px; width: 0px; height: 0px; opacity: 0; border-width: 0px;">
+        <div class="cover-stamp-inner" data-dashlane-rid="f05504881f8180e5">
+          <div class="num" style="" data-dashlane-rid="e3620d882020133b"><br></div>
+          <div class="lbl" style="" data-dashlane-rid="cd1d934f42498571"><br></div>
+        </div>
+      </div>
+
+      <div class="page-foot">
+        <span class="heart"></span>
+        <span style="">m &amp; g · 5 · 21 · 2026</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================ -->
+  <!-- 02 — ITINERARY                -->
+  <!-- ============================ -->
+  <section data-label="02 Itinerary">
+    <div class="itin">
+
+      <div class="slide-head" data-dashlane-rid="11cbacf539cbe98b">
+        <div class="slide-head-left" data-dashlane-rid="271477373fcb6f1c">
+          <div class="eyebrow" style="" data-dashlane-rid="b6a0a75c5c9d014f">how the night goes</div>
+          <h1 class="title" style="">schedule</h1>
+        </div>
+        <div class="slide-head-right" style="" data-dashlane-rid="a7d71e83e8ec24f4" data-dashlane-classification="other">these times are honestly just <span style="color: rgb(147, 47, 87);"><span style="font-weight: bold;">suggestions</span></span>. no penalty for being early/late</div>
+      </div>
+
+      <div class="itin-grid">
+
+        <!-- card 1 -->
+        <div class="itin-card" data-dashlane-rid="d07cab653573b07f">
+          <span class="itin-num">01</span>
+          <div class="itin-time">6:00<span class="ampm">pm</span></div>
+          <div class="itin-stage" style="" data-dashlane-rid="01a89763e7a34358">Ice breaker</div>
+          <div class="itin-desc" style="" data-dashlane-rid="bbee46cec5bb6a9d">
+            something pink &amp; fizzy in a glass, non-alcoholic tho because we both work the day after. this can be the time we open each other's presents!</div>
+          <div class="itin-icon" style="" data-dashlane-rid="ae536661accdb67e">— clink —</div>
+        </div>
+
+        <!-- card 2 -->
+        <div class="itin-card dark" data-dashlane-rid="15e20ed291786bc3">
+          <span class="itin-num">02</span>
+          <div class="itin-time" style="" data-dashlane-rid="960d367df9706701">6:30<span class="ampm">pm</span></div>
+          <div class="itin-stage" style="" data-dashlane-rid="3ecf2a96564cc580">Cooking</div>
+          <div class="itin-desc" style="" data-dashlane-rid="d67ae875069822eb">
+            aprons on. spatulas ready. this is a race. we're racing. whoever can cook faster wins.<div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div><br></div><div>just kidding this is a team event.</div></div>
+          <div class="itin-icon">— stir, sip, repeat —</div>
+        </div>
+
+        <!-- card 3 -->
+        <div class="itin-card" data-dashlane-rid="94c55f4c5990a8c0">
+          <span class="itin-num" style="">03</span>
+          <div class="itin-time">7:15<span class="ampm">pm</span></div>
+          <div class="itin-stage">Dinner</div>
+          <div class="itin-desc" style="" data-dashlane-rid="a77af719ccba2a2c">time to eat! we're gonna be hungry by this time. especially me because i'll probably forget to eat breakfast and lunch.</div>
+          <div class="itin-icon">— buon appetito —</div>
+        </div>
+
+      </div>
+
+      <div class="itin-foot" data-dashlane-rid="9aab045c35eb86d6">
+        <div class="itin-foot-line" style="" data-dashlane-rid="9c53a76d71e87833">
+          <span class="dot"></span>
+          a candle, probably two · the playlist you and i are going to make for this night that doesn't exist yet · great pasta· what else does one need in this life?</div>
+      </div>
+
+      <div class="page-foot">
+        <span class="heart"></span>
+        <span>ii · the run of show</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================ -->
+  <!-- 03 — RECIPE                   -->
+  <!-- ============================ -->
+  <section data-label="03 Recipe" data-deck-last-visible="">
+    <div class="recipe">
+
+      <div class="recipe-head" data-dashlane-rid="1ef49cfa213ae3e2">
+        <div class="recipe-head-left">
+          <div class="eyebrow">what we're making</div>
+          <h1 class="title">beet pasta · protein tbd</h1>
+        </div>
+        <div class="lede" style="" data-dashlane-rid="8b607b5b376f1767">
+          <em style="">three servings</em> — if it comes out super good, you can keep the extra two servings for another day. if its ehhh, you can give them to your mom and nala</div>
+      </div>
+
+      <div class="recipe-body">
+
+        <!-- ingredients card -->
+        <div class="ingredients">
+          <h2 class="ing-title">Ingredients</h2>
+          <div class="ing-sub">ready for pickup on day of event.</div>
+
+          <ul class="ing-list">
+            <li><span class="name">Pasta (Rigatoni)</span><span class="amt">½ lb · 8 oz</span></li>
+            <li><span class="name">Raw beets</span><span class="amt">4 oz, peeled &amp; cubed</span></li>
+            <li><span class="name">Full-fat coconut milk</span><span class="amt">6 tbsp</span></li>
+            <li><span class="name">Low-sodium veg broth</span><span class="amt">¼ cup</span></li>
+            <li><span class="name">Lemon juice</span><span class="amt">1 tbsp</span></li>
+            <li><span class="name">Garlic</span><span class="amt">1–2 cloves</span></li>
+            <li><span class="name">Nutritional yeast</span><span class="amt">1 tbsp · opt.</span></li>
+            <li><span class="name">Salt</span><span class="amt">¼ tsp</span></li>
+            <li><span class="name">Black pepper</span><span class="amt">to taste</span></li>
+            <li><span class="name">Reserved pasta water</span><span class="amt">6 tbsp</span></li>
+            <li><span class="name">Crumbled vegan feta</span><span class="amt">topping · opt.</span></li>
+          </ul>
+
+        </div>
+
+        <!-- instructions -->
+        <div class="instructions">
+          <h2 class="ins-title" style="">Instructions</h2>
+          <div class="ins-sub">10 steps · about thirty minutes (totally guessing on the time. i honestly have no clue)</div>
+
+          <ol class="ins-list">
+            <li>
+              <span class="step-num">1</span>
+              <span class="step-text">Cook the pasta to package directions. Before draining, <b>reserve 6 tbsp of pasta water</b>. Drain and set the pasta aside.</span>
+            </li>
+            <li>
+              <span class="step-num">2</span>
+              <span class="step-text">In a high-speed blender, combine the <b>beets, coconut milk, broth, lemon juice, garlic, nutritional yeast, salt &amp; pepper</b>.</span>
+            </li>
+            <li>
+              <span class="step-num">3</span>
+              <span class="step-text">Blend 30 seconds to 1 minute, until smooth and creamy. Taste. Adjust salt or lemon to your liking.</span>
+            </li>
+            <li>
+              <span class="step-num">4</span>
+              <span class="step-text">Pour the sauce into the same pot you used for the pasta. Add the <b>reserved pasta water</b>.</span>
+            </li>
+            <li>
+              <span class="step-num">5</span>
+              <span class="step-text">Bring to a simmer over medium-low. Cook <b>~10 minutes</b>, stirring occasionally, until thickened.</span>
+            </li>
+            <li>
+              <span class="step-num">6</span>
+              <span class="step-text">Add the cooked pasta back to the pot and <b>stir to coat</b> every piece in pink.</span>
+            </li>
+            <li>
+              <span class="step-num">7</span>
+              <span class="step-text">Cook another <b>2–3 minutes</b> until the sauce clings to the pasta.</span>
+            </li>
+            <li>
+              <span class="step-num">8</span>
+              <span class="step-text">This should honestly be step 1, but we're freestyling this. Cook your protein as desired.</span>
+            </li>
+            <li>
+              <span class="step-num">9</span>
+              <span class="step-text">Add protein to the pasta. Make sure to mix well until the protein is pink too.</span>
+            </li>
+            <li>
+              <span class="step-num">10</span>
+              <span class="step-text">Serve warm, topped with crumbled feta, parsley, &amp; a candle on the table. (candle is optional)</span>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+
+      <img class="recipe-stamp" src="assets/beet-mark.svg" alt="">
+
+      
+      <div class="page-foot">
+        <span class="heart"></span>
+        <span style="padding: 0px; margin: 0px; border-width: 0px; border-style: solid; line-height: 1.55; letter-spacing: 3.92px;">iii · the recipe</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================ -->
+  <!-- 04 — RSVP                     -->
+  <!-- ============================ -->
+  <section data-label="04 RSVP">
+    <div class="rsvp">
+      <button class="rsvp-btn" onclick="launchConfetti()">press if you're attending!</button>
+      <p class="rsvp-msg" id="rsvp-msg">the button doesn't do anything besides activate the confetti, but guido is excited to see you there!</p>
+    </div>
+  </section>
+
+</deck-stage>
+
+<canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999998;display:none;"></canvas>
+
+<div class="deck-nav" id="deck-nav">
+  <button class="deck-nav-btn" id="deck-prev" aria-label="Previous slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+  </button>
+  <button class="deck-nav-btn" id="deck-next" aria-label="Next slide">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+  </button>
+</div>
+
+<script src="deck-stage.js"></script>
+<script>
+  const stage = document.querySelector('deck-stage');
+
+  // Hide the built-in overlay (lives in shadow DOM, so inject a style directly)
+  const shadowStyle = document.createElement('style');
+  shadowStyle.textContent = '.overlay { display: none !important; }';
+  stage.shadowRoot.appendChild(shadowStyle);
+
+  const prevBtn = document.getElementById('deck-prev');
+  const nextBtn = document.getElementById('deck-next');
+
+  function updateArrows(index, total) {
+    prevBtn.style.opacity = index === 0 ? '0.28' : '1';
+    nextBtn.style.opacity = index === total - 1 ? '0.28' : '1';
+  }
+
+  prevBtn.addEventListener('click', () => stage.prev());
+  nextBtn.addEventListener('click', () => stage.next());
+
+  stage.addEventListener('slidechange', (e) => {
+    updateArrows(e.detail.index, e.detail.total);
+  });
+
+  function launchConfetti() {
+    const canvas = document.getElementById('confetti-canvas');
+    const msg = document.getElementById('rsvp-msg');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.style.display = 'block';
+    if (msg) msg.classList.add('show');
+
+    const ctx = canvas.getContext('2d');
+    const colors = ['#ff69b4','#ff1493','#ffb6c1','#ffc0cb','#e75480','#ff85c1','#ff99cc','#f06292','#c2185b','#fff0f5','#fce4ec','#f48fb1'];
+
+    function makeParticles(count) {
+      return Array.from({ length: count }, () => ({
+        x: Math.random() * canvas.width,
+        y: -20 + Math.random() * -280,
+        w: 7 + Math.random() * 11,
+        h: 4 + Math.random() * 7,
+        vx: (Math.random() - 0.5) * 6,
+        vy: 1.8 + Math.random() * 5,
+        rot: Math.random() * Math.PI * 2,
+        rotV: (Math.random() - 0.5) * 0.18,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: 1,
+      }));
+    }
+
+    let particles = makeParticles(240);
+    let rafId;
+
+    function tick() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      let alive = 0;
+      for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.09;
+        p.rot += p.rotV;
+        if (p.y > canvas.height - 80) p.alpha = Math.max(0, p.alpha - 0.035);
+        if (p.y < canvas.height + 60 && p.alpha > 0) alive++;
+        ctx.save();
+        ctx.globalAlpha = p.alpha;
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w / 2, -p.h / 2, p.w, p.h);
+        ctx.restore();
+      }
+      if (alive > 0) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        canvas.style.display = 'none';
+      }
+    }
+
+    if (rafId) cancelAnimationFrame(rafId);
+    tick();
+
+    setTimeout(() => { particles = particles.concat(makeParticles(200)); }, 1100);
+    setTimeout(() => { particles = particles.concat(makeParticles(160)); }, 2200);
+  }
+</script>
+
+
+</body></html>
